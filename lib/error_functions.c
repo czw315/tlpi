@@ -27,7 +27,7 @@ outputError(Boolean useErr, int err, Boolean flushStdout,
 #define BUF_SIZE 500
     char buf[BUF_SIZE],userMsg[BUF_SIZE],errText[BUF_SIZE];
 
-    vsnprintf(userMsg,BUF_SIZE,format,vp);
+    vsnprintf(userMsg,BUF_SIZE,format,ap);
 
     if(useErr)
         snprintf(errText,BUF_SIZE," [%s %s]",
@@ -79,7 +79,7 @@ errExit(const char* format, ...)
  * 刷新以及调用exit handler,假如在多进程中，子进程若因发生错误而需要终止时err_exit就显得有用
  */
 void
-err_exit(cosnt char* format, ...)
+err_exit(const char* format, ...)
 {
     va_list argList;
 
@@ -133,7 +133,7 @@ usageErr(const char* format, ...)
     va_end(argList);
 
     fflush(stderr);
-    exit(EXIT_FAILURE)；
+    exit(EXIT_FAILURE);
 }
 
 void
@@ -148,5 +148,5 @@ cmdLineErr(const char* format, ...)
     va_end(argList);
 
     fflush(stderr);
-    exit(EXIT_FAILURE)；
+    exit(EXIT_FAILURE);
 }
